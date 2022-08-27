@@ -7,39 +7,32 @@ import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
 import { api } from "../../../api";
+// import ccData from "./cc.json"
 
 const TextField = (props) => {
   const theme = useSelector(({theme}) => theme);
   const {cc} = useSelector(({account}) => account);
-  const [loading, setLoading] = React.useState(false)
+  // const [loading, setLoading] = React.useState(false)
 
-  React.useEffect(() => {
-      handleCountry();
-  }, []);
+  // React.useEffect(() => {
+  //     handleCountry();
+  // }, []);
 
-  const handleCountry = async () => {
-    if (typeof cc[0] === "undefined") {
-      try {
-        setLoading(true);
-        console.log('count11');
+  // const handleCountry = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const cc = [];
+  //     ccData.forEach(element => {
+  //       cc.push({value: element.cc, label: element.cc});
+  //     });
 
-        const country = await axios.get(api.country);
-        const cc = [];
-        country.data.data.forEach((element) => {
-          cc.push({value: element.cc, label: element.cc});
-        });
-        console.log('count22');
+  //     dispatch(accountAction.setCountry({cc, country: country.data.data}));
+  //     setLoading(false);
+  //   } catch (error) {
+  //     setLoading(false);
+  //   }
+  // }
 
-        dispatch(accountAction.setCountry({cc, country: country.data.data}));
-        setLoading(false);
-      } catch (error) {
-        console.log('error', error);
-        console.log('error', error.response);
-        setLoading(false);
-      }
-    }
-
-  }
   return (
     <View style={props.rootStyle}>
       <View
@@ -57,25 +50,26 @@ const TextField = (props) => {
           props.containerStyle,
         ]}>
         {props.icon && <View style={classes.iconTextField}>{props.icon}</View>}
-        {!loading ? (
+        {cc ? (
           <RNPickerSelect
-            onValueChange={(value) => props.onValueChange(value)}
+            onValueChange={value => props.onValueChange(value)}
             value={props.ccValue}
             items={cc}
             style={{
               viewContainer: {
                 alignContent: 'center',
                 justifyContent: 'center',
-                marginLeft: -7,
+                // marginLeft: -2,
+                marginLeft: 4,
                 width: 60,
                 ...props.viewContainer,
               },
               inputIOS: {
-                fontSize: 17,
+                fontSize: 14,
                 color: colors.primary.main,
               },
               inputAndroid: {
-                fontSize: 16,
+                fontSize: 15,
                 color: colors.primary.main,
               },
             }}
@@ -94,7 +88,7 @@ const TextField = (props) => {
         ) : (
           <ActivityIndicator size={20} color={colors.primary.main} />
         )}
-        
+
         <TextInput
           style={[classes.textField, props.TextFieldStyle]}
           {...props}
@@ -149,7 +143,7 @@ const classes = StyleSheet.create({
     paddingHorizontal: 10,
     paddingLeft: 0,
     width: '100%',
-    color: colors.black,
+    // color: colors.black,
     fontSize: 16,
   },
   iconRoot: {

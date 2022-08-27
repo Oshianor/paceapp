@@ -6,20 +6,22 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
-  Text,
 } from 'react-native';
-import {Title, Subheading} from 'react-native-paper';
+import {Text, Subheading} from 'react-native-paper';
 import {Button} from '../../components/Button';
 import {colors} from '../../theme';
 import {TextField, Password} from '../../components/TextField';
 import BackButton from '../../navigation/custom/BackButton';
 import {useDispatch} from 'react-redux';
 import {api} from '../../api';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 // import {Preloader} from '../../components/Feedback';
 import {accountAction, feedbackAction} from '../../store/actions';
 import {validateEmail} from '../../utils';
 import axios from 'axios';
+
+  console.log('colors', colors.black);
+
 
 const Login = ({navigation: {goBack, navigate}}) => {
   const dispatch = useDispatch();
@@ -60,11 +62,11 @@ const Login = ({navigation: {goBack, navigate}}) => {
         password: value.password,
       });
 
-      await AsyncStorage.setItem(
-        'token',
-        JSON.stringify(login.headers['x-auth-token']),
-      );
-      await AsyncStorage.setItem('user', JSON.stringify(login.data.data));
+      // await AsyncStorage.setItem(
+      //   'token',
+      //   JSON.stringify(login.headers['x-auth-token']),
+      // );
+      // await AsyncStorage.setItem('user', JSON.stringify(login.data.data));
       dispatch(accountAction.setToken(login.headers['x-auth-token']));
       dispatch(accountAction.setUserData(login.data.data));
       dispatch(
@@ -102,7 +104,7 @@ const Login = ({navigation: {goBack, navigate}}) => {
         <BackButton goBack={() => goBack()} color={colors.black} />
       </View>
       <View style={classes.bodyRoot}>
-        <Title style={classes.bodyTitle}>Login</Title>
+        <Text style={classes.bodyTitle}>Login</Text>
         <TextField
           label="Email Address"
           value={value.email}
@@ -157,7 +159,7 @@ const classes = StyleSheet.create({
   },
   headerRoot: {
     justifyContent: 'center',
-    marginLeft: 8,
+    marginLeft: 3,
     flex: 1,
   },
   bodyRoot: {

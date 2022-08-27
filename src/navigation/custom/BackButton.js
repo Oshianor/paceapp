@@ -29,7 +29,7 @@ export default BackButton
 
 const classes = StyleSheet.create({
   root: {
-    marginLeft: 20,
+    // marginLeft: 20,
   },
   img: {
     height: 15,

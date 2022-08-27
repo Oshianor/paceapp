@@ -1,12 +1,14 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {StyleSheet} from 'react-native';
+// import {StyleSheet} from 'react-native';
 import Welcome from '../../screens/Onboarding';
-// import Login from '../../screens/Onboarding/login';
+import Login from '../../screens/Onboarding/login';
 import Register from '../../screens/Onboarding/register';
-// import VerificationCompleted from '../../screens/Onboarding/completeVerification';
-// import Verification from '../../screens/Onboarding/verification';
-// import ForgotPassword from '../../screens/Onboarding/ForgotPassword';
+import CompleteRegistration from '../../screens/Onboarding/completeRegistration';
+import Terms from '../../screens/Onboarding/terms';
+import Speciality from '../../screens/Onboarding/speciality';
+import VerificationCompleted from '../../screens/Onboarding/completeVerification';
+import ForgotPassword from '../../screens/Onboarding/ForgotPassword';
 // import OTPVerification from '../../screens/Onboarding/ForgotPassword/OTPVerification';
 // import ResetPassword from '../../screens/Onboarding/ForgotPassword/resetPassword';
 
@@ -30,10 +32,20 @@ const Onboarding = () => {
         options={{headerShown: false}}
         component={Register}
       />
-      {/* <Stack.Screen
-        name="Verification"
+      <Stack.Screen
+        name="CompleteRegistration"
         options={{headerShown: false}}
-        component={Verification}
+        component={CompleteRegistration}
+      />
+      <Stack.Screen
+        name="Terms"
+        options={{headerShown: false}}
+        component={Terms}
+      />
+      <Stack.Screen
+        name="Speciality"
+        options={{headerShown: false}}
+        component={Speciality}
       />
       <Stack.Screen
         name="VerificationCompleted"
@@ -45,12 +57,12 @@ const Onboarding = () => {
         options={{headerShown: false}}
         component={ForgotPassword}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="OTP"
         options={{headerShown: false}}
         component={OTPVerification}
-      />
-      <Stack.Screen
+      /> */}
+      {/* <Stack.Screen
         name="Reset"
         options={{headerShown: false}}
         component={ResetPassword}

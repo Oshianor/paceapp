@@ -6,12 +6,14 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme';
 
-const Radio = ({selected, container, selectedStyle}) => {
+const Radio = ({selected, rootStyle, selectedStyle}) => {
   return (
-    <View style={[classes.radioRoot, container]}>
-      {selected && <View style={[classes.radioSelected, selectedStyle]}>
-        <Icon name="check" size={15} color="white" />
-      </View> }
+    <View style={[classes.radioRoot, rootStyle]}>
+      {selected && (
+        <View style={[classes.radioSelected, selectedStyle]}>
+          <Icon name="check" size={15} color="white" />
+        </View>
+      )}
     </View>
   );
 };

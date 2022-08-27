@@ -23,8 +23,7 @@ import axios from 'axios';
 import { api } from '../../api';
 
 
-// console.log('colors', colors.black);
-const Register = ({navigation: { navigate, goBack }}) => {
+const CompleteRegistration = ({navigation: { navigate, goBack }}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [value, setValue] = React.useState({
@@ -41,8 +40,7 @@ const Register = ({navigation: { navigate, goBack }}) => {
     Keyboard.dismiss();
     try {
       
-
-      navigate('CompleteRegistration');
+      navigate('Terms');
     } catch (err) {
       setIsLoading(false);
       if (err.response) {
@@ -66,31 +64,67 @@ const Register = ({navigation: { navigate, goBack }}) => {
         style={classes.bodyRoot}>
         <ScrollView>
           <Title style={classes.bodyTitle}>Create Account</Title>
-          {/* <TextField
-            label="Full Name"
+          <TextField
+            label="First Name"
             onChangeText={text => setValue({...value, firstName: text})}
             value={value.firstName}
+            rootStyle={classes.inputRoot}
             placeholder="Your Name"
-            rootStyle={classes.inputRoot}
-          /> */}
-          <TextField
-            label="Email Address"
-            onChangeText={text => setValue({...value, email: text})}
-            value={value.email}
-            keyboardType="email-address"
-            rootStyle={classes.inputRoot}
-            placeholder="yourmail@email.com"
           />
-          <Password
-            label="Password"
-            onChangeText={text => setValue({...value, password: text})}
-            value={value.password}
+          <TextField
+            label="Last Name"
+            onChangeText={text => setValue({...value, lastName: text})}
+            value={value.lastName}
             rootStyle={classes.inputRoot}
-            placeholder="Enter Password"
+            placeholder="Another Name"
+          />
+          <PhoneNumber
+            label="Phone Number"
+            ccValue={value.countryCode}
+            onValueChange={countryCode => setValue({...value, countryCode})}
+            rootStyle={classes.inputRoot}
+            value={value.phoneNumber}
+            onChangeText={text => setValue({...value, phoneNumber: text})}
+            placeholder="Your Number"
+          />
+          <TextField
+            label="Website"
+            onChangeText={text => setValue({...value, lastName: text})}
+            value={value.lastName}
+            rootStyle={classes.inputRoot}
+            placeholder="Another Name"
+          />
+          <TextField
+            label="Facebook"
+            onChangeText={text => setValue({...value, lastName: text})}
+            value={value.lastName}
+            rootStyle={classes.inputRoot}
+            placeholder="Another Name"
+          />
+          <TextField
+            label="Twitter"
+            onChangeText={text => setValue({...value, lastName: text})}
+            value={value.lastName}
+            rootStyle={classes.inputRoot}
+            placeholder="Another Name"
+          />
+          <TextField
+            label="LinkedIN"
+            onChangeText={text => setValue({...value, lastName: text})}
+            value={value.lastName}
+            rootStyle={classes.inputRoot}
+            placeholder="Another Name"
+          />
+          <TextField
+            label="Address"
+            onChangeText={text => setValue({...value, lastName: text})}
+            value={value.lastName}
+            rootStyle={classes.inputRoot}
+            placeholder="Another Name"
           />
 
           <View style={classes.buttonRoot}>
-            <Button label="Create Account" onPress={handleCreateAccount} />
+            <Button label="Next" onPress={handleCreateAccount} />
             <Caption style={classes.content}>
               By continuing, I confirm that I have read & agree to the{' '}
               <Caption style={classes.contentRed}> Terms & conditions </Caption>{' '}
@@ -100,23 +134,13 @@ const Register = ({navigation: { navigate, goBack }}) => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-      <View style={classes.footerRoot}>
-        <View style={classes.signupRoot}>
-          <Subheading style={classes.signupLeft}>
-            Already Have An Account?
-          </Subheading>
-          <TouchableOpacity onPress={() => navigate('Login')}>
-            <Subheading style={classes.signupRight}> Login.</Subheading>
-          </TouchableOpacity>
-        </View>
-      </View>
       {/* <Preloader visible={isLoading} /> */}
     </SafeAreaView>
   );
 };
 
 
-export default Register;
+export default CompleteRegistration;
 
 const classes = StyleSheet.create({
   root: {
@@ -142,40 +166,11 @@ const classes = StyleSheet.create({
     fontWeight: '200',
     color: colors.primary.main,
   },
-  footerRoot: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    // backgroundColor: "white"
-  },
-  hr: {
-    borderBottomColor: colors.hr.light,
-    borderBottomWidth: 1,
-    height: 10,
-  },
-  signupRoot: {
-    backgroundColor: "white",
-    // height: 120,
-    paddingHorizontal: 20,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    borderTopColor: colors.hr.light,
-    borderTopWidth: 1,
-    width: '100%',
-    paddingVertical: 10,
-    flexDirection: 'row',
-  },
-  signupRight: {
-    color: colors.primary.main,
-  },
-  signupLeft: {
-    color: colors.secondary.main,
-  },
   buttonRoot: {
     marginVertical: 20,
     // marginHorizontal: 20,
   },
   inputRoot: {
-    marginVertical: 4
-  }
+    marginVertical: 4,
+  },
 });

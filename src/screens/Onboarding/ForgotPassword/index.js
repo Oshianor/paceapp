@@ -1,7 +1,7 @@
 import React from 'react';
 import {TextField} from '../../../components/TextField';
-import {View, StyleSheet, Text} from 'react-native';
-import {Caption} from 'react-native-paper';
+import {View, StyleSheet, SafeAreaView} from 'react-native';
+import {Text} from 'react-native-paper';
 import {useSelector, useDispatch} from 'react-redux';
 import {Button} from '../../../components/Button';
 import BackButton from '../../../navigation/custom/BackButton';
@@ -19,89 +19,101 @@ const ForgotPassword = ({navigation: {navigate, goBack}}) => {
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
   const submit = () => {
-    if (!validateEmail(email)) {
-      dispatch(
-        feedbackAction.launch({
-          open: true,
-          severity: 'w',
-          msg: 'invalid email',
-        }),
-      );
-      return;
-    }
-    setLoading(true);
-    axios
-      .post(api.forgotPassword, {
-        email,
-        verificationMode: 'otp',
-      })
-      .then((res) => {
-        const {msg} = res.data;
-        dispatch(feedbackAction.launch({open: true, severity: 's', msg}));
-        navigate('OTP', {email});
-      })
-      .catch((err) => {
-        if (err.response) {
-          console.log('error', err.response);
-          const {msg} = err.response.data;
-          dispatch(feedbackAction.launch({open: true, severity: 'w', msg}));
-          return;
-        }
-        dispatch(
-          feedbackAction.launch({open: true, severity: 'w', msg: `${err}`}),
-        );
-      })
-      .finally(() => setLoading(false));
+    // if (!validateEmail(email)) {
+    //   dispatch(
+    //     feedbackAction.launch({
+    //       open: true,
+    //       severity: 'w',
+    //       msg: 'invalid email',
+    //     }),
+    //   );
+    //   return;
+    // }
+    // setLoading(true);
+    // axios
+    //   .post(api.forgotPassword, {
+    //     email,
+    //     verificationMode: 'otp',
+    //   })
+    //   .then((res) => {
+    //     const {msg} = res.data;
+    //     dispatch(feedbackAction.launch({open: true, severity: 's', msg}));
+    //     navigate('OTP', {email});
+    //   })
+    //   .catch((err) => {
+    //     if (err.response) {
+    //       console.log('error', err.response);
+    //       const {msg} = err.response.data;
+    //       dispatch(feedbackAction.launch({open: true, severity: 'w', msg}));
+    //       return;
+    //     }
+    //     dispatch(
+    //       feedbackAction.launch({open: true, severity: 'w', msg: `${err}`}),
+    //     );
+    //   })
+    //   .finally(() => setLoading(false));
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.backbutton}>
+    <SafeAreaView style={classes.root}>
+      <View style={classes.headerRoot}>
         <BackButton goBack={() => goBack()} color={colors.black} />
       </View>
-      <View style={styles.body}>
-        <Caption style={styles.header}>Forgot Password?</Caption>
+      <View style={classes.bodyRoot}>
+        <View style={classes.textRoot}>
+          <Text variant="titleLarge" style={classes.textHeader}>
+            Forgotten Password?
+          </Text>
+          <Text style={classes.headerCaption}>
+            Enter your email to receive a password reset link
+          </Text>
+        </View>
+
         <TextField
           label="Enter Email Address"
           value={email}
           placeholder=""
           keyboardType="email-address"
           placeholderTextColor="grey"
-          onChangeText={(input) => {
+          onChangeText={input => {
             setEmail(input);
           }}
-          rootStyle={{marginHorizontal: 20}}
-          TextFieldStyle={{
-            height: 54,
-          }}
         />
+
+        <View style={classes.buttonRoot}>
+          <Button label="Recover Account" loading={loading} onPress={submit} />
+        </View>
       </View>
-      <View style={{marginHorizontal: 20}}>
-        <Button label="Recover Account" loading={loading} onPress={submit} />
-      </View>
+
       <FeedBack />
-    </View>
+    </SafeAreaView>
   );
 };
 
 export default ForgotPassword;
 
-const styles = StyleSheet.create({
-  container: {
+const classes = StyleSheet.create({
+  root: {
     flex: 1,
-    padding: 5,
   },
-  header: {
-    fontSize: 26,
-    lineHeight: 35,
+  headerRoot: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  bodyRoot: {
+    flex: 8,
+    marginHorizontal: 20,
+  },
+  textRoot: {
+    marginVertical: 20,
+  },
+  textHeader: {
+    fontWeight: '500',
     color: colors.black,
-    marginLeft: 20,
   },
-  body: {
-    justifyContent: 'space-evenly',
-    height: DEVICE_HEIGHT * 0.4,
+  headerCaption: {
+    marginVertical: 5,
   },
-  backbutton: {
-    marginLeft: -10,
-    marginTop: 20,
+  buttonRoot: {
+    marginVertical: 20,
   },
 });

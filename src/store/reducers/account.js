@@ -10,19 +10,8 @@ import {
 const initialstate = {
   token: null,
   user: null,
-  cards: [],
-  cashPaymentType: 'pickup', // if it's a cash payment and what type it is. PICKUP // DELIVERY
-  paymentMethod: 'cash',
-  card: null,
-  location: {
-    address: '1600 Charleston Rd, Mountain View, CA 94043, USA',
-    coords: {
-      latitude: 37.4219983,
-      longitude: -122.084,
-    },
-  },
   country: [],
-  cc: [],
+  cc: null,
 };
 
 export default (state = initialstate, action) => {

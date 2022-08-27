@@ -1,8 +1,3 @@
 export { default as Offline } from "./components/Offline";
-export {default as Order} from './components/Order';
-export { default as Task } from "./components/Task";
-export {default as EnroutePickup} from './components/EnroutePickup';
-export {default as ConfirmPickup} from './components/ConfirmPickup';
-export { default as Nav } from "./components/Nav"
-export {default as DriverDetails} from "./components/Driver";
-export { default as AddressBook } from "./components/AddressBook"
+export {default as Featured} from './components/featured';
+export {default as Upcoming} from './components/upcoming';

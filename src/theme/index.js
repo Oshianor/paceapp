@@ -5,9 +5,9 @@ const {width, height} = Dimensions.get('screen');
 const APP_WIDTH = width;
 const APP_HEIGHT = height;
 
-const colors = {
+const colors = Object.freeze({
   primary: {
-    light: '#C6CADF',
+    light: '#eef3fb', // #eef3fb C6CADF
     main: '#015cd8',
     dark: '#015cd8',
   },
@@ -39,7 +39,7 @@ const colors = {
     dark: '#131313',
     new: '#212121',
   },
-};
+});
 
 const states = {
   'Federal Capital Territory': 'Abuja Federal Capital Territory',
