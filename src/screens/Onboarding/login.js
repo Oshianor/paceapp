@@ -6,6 +6,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
+  Image,
+  SafeAreaView,
 } from 'react-native';
 import {Text, Subheading} from 'react-native-paper';
 import {Button} from '../../components/Button';
@@ -19,9 +21,7 @@ import {api} from '../../api';
 import {accountAction, feedbackAction} from '../../store/actions';
 import {validateEmail} from '../../utils';
 import axios from 'axios';
-
-  console.log('colors', colors.black);
-
+import img from '../../image';
 
 const Login = ({navigation: {goBack, navigate}}) => {
   const dispatch = useDispatch();
@@ -97,57 +97,64 @@ const Login = ({navigation: {goBack, navigate}}) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-      style={classes.root}>
+    <SafeAreaView style={classes.root}>
       <View style={classes.headerRoot}>
         <BackButton goBack={() => goBack()} color={colors.black} />
       </View>
-      <View style={classes.bodyRoot}>
-        <Text style={classes.bodyTitle}>Login</Text>
-        <TextField
-          label="Email Address"
-          value={value.email}
-          onChangeText={(email) => setValue({...value, email})}
-          placeholder="Enter Email Address"
-        />
-        <View style={{marginTop: 25}}>
-          <Password
-            label="Password"
-            value={value.password}
-            onChangeText={(password) => setValue({...value, password})}
-            placeholder="Enter password"
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={classes.container}>
+        <View style={classes.bodyRoot}>
+          <Image source={img.iconBlue} style={classes.img} />
+          <Text style={classes.bodyTitle}>Login</Text>
+          <TextField
+            label="Email Address"
+            value={value.email}
+            onChangeText={email => setValue({...value, email})}
+            placeholder="Enter Email Address"
           />
-          <Text
-            onPress={() => {
-              navigate('ForgotPassword');
-            }}
-            style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              fontSize: 12,
-              color: colors.primary.main,
-            }}>
-            Forgot Password?
-          </Text>
-        </View>
+          <View style={{marginTop: 25}}>
+            <Password
+              label="Password"
+              value={value.password}
+              onChangeText={password => setValue({...value, password})}
+              placeholder="Enter password"
+            />
+            <Text
+              onPress={() => {
+                navigate('ForgotPassword');
+              }}
+              style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                fontSize: 12,
+                color: colors.primary.main,
+              }}>
+              Forgot Password?
+            </Text>
+          </View>
 
-        <Button label="Sign In" onPress={submit} rootStyle={{marginTop: 40}} />
-      </View>
-      <View style={classes.footerRoot}>
-        {/* <View style={{flexGrow: 1}} /> */}
-        <View style={classes.signupRoot}>
-          <Subheading style={classes.signupLeft}>
-            Don't Have An Account Yet?
-          </Subheading>
-          <TouchableOpacity onPress={() => navigate('Register')}>
-            <Subheading style={classes.signupRight}> Sign Up.</Subheading>
-          </TouchableOpacity>
+          <Button
+            label="Sign In"
+            onPress={() => navigate('Register')}
+            rootStyle={{marginTop: 40}}
+          />
         </View>
-      </View>
-      {/* <Preloader visible={isLoading} /> */}
-    </KeyboardAvoidingView>
+        <View style={classes.footerRoot}>
+          {/* <View style={{flexGrow: 1}} /> */}
+          <View style={classes.signupRoot}>
+            <Subheading style={classes.signupLeft}>
+              Don't Have An Account Yet?
+            </Subheading>
+            <TouchableOpacity onPress={() => navigate('Register')}>
+              <Subheading style={classes.signupRight}> Sign Up.</Subheading>
+            </TouchableOpacity>
+          </View>
+        </View>
+        {/* <Preloader visible={isLoading} /> */}
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -159,23 +166,26 @@ const classes = StyleSheet.create({
   },
   headerRoot: {
     justifyContent: 'center',
-    marginLeft: 3,
-    flex: 1,
+    marginLeft: 15,
+    marginBottom: 10
+  },
+  container: {
+    flex: 10
   },
   bodyRoot: {
     marginHorizontal: 20,
-    // justifyContent: 'space-evenly',
-    marginTop: 20,
     flex: 5,
     justifyContent: 'flex-start',
+  },
+  img: {
+    width: 45,
+    height: 45
   },
   bodyTitle: {
     fontSize: 28,
     marginBottom: 20,
   },
   footerRoot: {
-    // borderTopColor: colors.hr,
-    // borderTopWidth: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
     flex: 1,

@@ -3,19 +3,22 @@ import {
   View,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity,
+  Image,
 } from 'react-native';
 import {Title, Subheading} from 'react-native-paper';
 import {Button} from '../../components/Button';
-// import img from '../../image';
+import img from '../../image';
 import {colors} from '../../theme';
 
 const Onboarding = ({navigation: {navigate}}) => {
   return (
     <View style={classes.root}>
-      {/* <ImageBackground source={img.setupBG} style={classes.headerRoot} /> */}
+      <ImageBackground source={img.bgdoc} style={classes.headerRoot}>
       <View style={classes.bodyRoot}>
-        <Title style={classes.title}>Welcome to Exalt Courier App</Title>
+        <View style={classes.titleRoot}>
+          <Image source={img.icon} style={{width: 45, height: 45}} />
+          <Title style={classes.title}>Welcome to PACE</Title>
+        </View>
 
         <View style={classes.buttonRoot}>
           <Button
@@ -36,6 +39,8 @@ const Onboarding = ({navigation: {navigate}}) => {
           <Subheading style={classes.order}>Order with Exalt</Subheading>
         </TouchableOpacity> */}
       </View>
+      </ImageBackground>
+
     </View>
   );
 };
@@ -45,9 +50,12 @@ export default Onboarding;
 const classes = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: colors.primary.main,
   },
   headerRoot: {
-    flex: 5,
+    flex: 1,
+    // backgroundColor: colors.primary.main,
+    backgroundColor: 'rgba(0,0,0,.8)',
   },
 
   bodyRoot: {
@@ -57,14 +65,19 @@ const classes = StyleSheet.create({
     flexDirection: 'column',
     marginBottom: 40,
   },
+  titleRoot: {
+    marginHorizontal: 20,
+    marginVertical: 20,
+  },
   title: {
     fontWeight: '700',
-    fontSize: 21,
-    marginVertical: 20,
-    marginHorizontal: 20,
+    fontSize: 23,
+    color: colors.white
   },
   button: {
     marginVertical: 10,
+    borderColor: colors.primary.light,
+    borderWidth: 1,
   },
   buttonRyt: {
     marginVertical: 10,

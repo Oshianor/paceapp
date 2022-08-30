@@ -1,0 +1,1 @@
+export { default as AboutTab } from "./components/about"

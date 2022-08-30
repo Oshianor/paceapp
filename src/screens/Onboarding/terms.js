@@ -1,13 +1,16 @@
 import React from 'react'
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Image} from 'react-native';
 import {ActivityIndicator, Text} from 'react-native-paper';
 import {Button} from '../../components/Button';
+import img from '../../image';
 
 
 const Terms = ({navigation: {navigate}}) => {
   return (
     <SafeAreaView style={classes.root}>
       <View style={classes.content}>
+        <Image source={img.iconBlue} style={classes.img} />
+
         <Text variant="titleLarge" style={classes.title}>
           Terms And Conditions
         </Text>
@@ -27,7 +30,10 @@ const Terms = ({navigation: {navigate}}) => {
       </View>
 
       <View style={classes.buttonRoot}>
-        <Button label="Accept" onPress={() => navigate('Speciality')} />
+        <Button
+          label="Accept"
+          onPress={() => navigate('VerificationCompleted')}
+        />
       </View>
     </SafeAreaView>
   );
@@ -41,14 +47,18 @@ const classes = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 10,
   },
+  img: {
+    width: 45,
+    height: 45,
+  },
   content: {
     flex: 3,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   title: {
     marginVertical: 10,
     fontWeight: '700',
-    textAlign: 'center',
+    // textAlign: 'center',
   },
   body: {
     marginVertical: 10,

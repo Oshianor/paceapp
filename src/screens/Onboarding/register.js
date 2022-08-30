@@ -7,12 +7,13 @@ import {
   ScrollView,
   SafeAreaView,
   Platform,
+  Image,
   Keyboard,
 } from 'react-native';
 import {Title, Subheading, Caption} from 'react-native-paper';
 import {Button} from '../../components/Button';
 import {feedbackAction} from '../../store/actions';
-import {colors} from '../../theme';
+import {APP_WIDTH, colors} from '../../theme';
 import {TextField, PhoneNumber, Password} from '../../components/TextField';
 import BackButton from '../../navigation/custom/BackButton';
 import {validateEmail} from '../../utils';
@@ -21,6 +22,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // import {Preloader} from '../../components/Feedback';
 import axios from 'axios';
 import { api } from '../../api';
+import img from '../../image';
 
 
 // console.log('colors', colors.black);
@@ -42,7 +44,7 @@ const Register = ({navigation: { navigate, goBack }}) => {
     try {
       
 
-      navigate('CompleteRegistration');
+      navigate('Speciality');
     } catch (err) {
       setIsLoading(false);
       if (err.response) {
@@ -65,14 +67,37 @@ const Register = ({navigation: { navigate, goBack }}) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={classes.bodyRoot}>
         <ScrollView>
+          <Image source={img.iconBlue} style={classes.img} />
           <Title style={classes.bodyTitle}>Create Account</Title>
-          {/* <TextField
-            label="Full Name"
+          <TextField
+            label="Title"
             onChangeText={text => setValue({...value, firstName: text})}
             value={value.firstName}
-            placeholder="Your Name"
+            placeholder="Your Title"
             rootStyle={classes.inputRoot}
-          /> */}
+          />
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <TextField
+              label="First Name"
+              onChangeText={text => setValue({...value, firstName: text})}
+              value={value.firstName}
+              rootStyle={classes.inputSplitRoot}
+              placeholder="First Name"
+            />
+            <TextField
+              label="Last Name"
+              onChangeText={text => setValue({...value, lastName: text})}
+              value={value.lastName}
+              rootStyle={classes.inputSplitRoot}
+              placeholder="Last Name"
+            />
+          </View>
+
           <TextField
             label="Email Address"
             onChangeText={text => setValue({...value, email: text})}
@@ -83,6 +108,13 @@ const Register = ({navigation: { navigate, goBack }}) => {
           />
           <Password
             label="Password"
+            onChangeText={text => setValue({...value, password: text})}
+            value={value.password}
+            rootStyle={classes.inputRoot}
+            placeholder="Enter Password"
+          />
+          <Password
+            label="Confirm Password"
             onChangeText={text => setValue({...value, password: text})}
             value={value.password}
             rootStyle={classes.inputRoot}
@@ -123,14 +155,20 @@ const classes = StyleSheet.create({
     flex: 1,
   },
   headerRoot: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'flex-start',
+    marginLeft: 15,
+    marginBottom: 10
   },
   bodyRoot: {
     flex: 10,
     marginHorizontal: 20,
-    marginVertical: 10,
+    // marginVertical: 10,
     justifyContent: 'space-evenly',
+  },
+  img: {
+    width: 45,
+    height: 45,
   },
   bodyTitle: {
     fontSize: 28,
@@ -154,7 +192,7 @@ const classes = StyleSheet.create({
     height: 10,
   },
   signupRoot: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     // height: 120,
     paddingHorizontal: 20,
     justifyContent: 'flex-start',
@@ -176,6 +214,10 @@ const classes = StyleSheet.create({
     // marginHorizontal: 20,
   },
   inputRoot: {
-    marginVertical: 4
-  }
+    marginVertical: 4,
+  },
+  inputSplitRoot: {
+    width: APP_WIDTH / 2.3,
+    marginVertical: 4,
+  },
 });

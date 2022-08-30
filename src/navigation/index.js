@@ -19,7 +19,7 @@ const Navigation = () => {
 
   
   return (
-    <Stack.Navigator initialRouteName="Dashboard" headerMode="float">
+    <Stack.Navigator initialRouteName="Onboarding" headerMode="float">
       {/* {token ? (
         
       ) : (

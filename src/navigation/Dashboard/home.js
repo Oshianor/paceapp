@@ -4,6 +4,7 @@ import { SearchField } from '../../components/TextField';
 import Search from '../../screens/dashboard/home/search';
 import BackButton from '../custom/BackButton';
 import ViewEvent from '../../screens/dashboard/home/viewEvent';
+import { Platform } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +15,10 @@ const HomeStack = () => {
         name="Search"
         options={({navigation: {goBack}}) => ({
           headerTitle: () => <SearchField />,
-          headerLeft: () => <BackButton goBack={() => goBack()} />,
+          headerLeft: () =>
+            Platform.OS === 'ios' ? (
+              <BackButton goBack={() => goBack()} />
+            ) : null,
         })}
         component={Search}
       />

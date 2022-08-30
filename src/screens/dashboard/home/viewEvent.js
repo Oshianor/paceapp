@@ -7,21 +7,59 @@ import {
   SafeAreaView,
   ImageBackground,
   Platform,
+  TouchableOpacity,
+  useWindowDimensions,
 } from 'react-native';
 import {Surface, Text} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import img from '../../../image';
 import BackButton from '../../../navigation/custom/BackButton';
 import {APP_WIDTH, colors} from '../../../theme';
+// import PagerView from 'react-native-pager-view';
+import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import { Button } from '../../../components/Button';
+import { AboutTab } from '../../../components/Tab';
+
+const FirstRoute = () => <View style={{flex: 1, backgroundColor: '#ff4081'}} />;
+
+const SecondRoute = () => (
+  <View style={{flex: 1, backgroundColor: '#673ab7'}} />
+);
+
 
 const ViewEvent = ({navigation: {navigate, goBack}}) => {
+    const layout = useWindowDimensions();
+    const [index, setIndex] = React.useState(0);
+    const [routes] = React.useState([
+      {key: 'aboutEvent', title: 'About Event'},
+      {key: 'speakers', title: 'Speakers'},
+      {key: 'agenda', title: 'Agenda'},
+      {key: 'venue', title: 'Venue'},
+      {key: 'price', title: 'Price'},
+      {key: 'accomodation', title: 'Accomodation'},
+    ]);
+
+    const renderTabBar = props => (
+      <TabBar
+        {...props}
+        scrollEnabled={true}
+        indicatorStyle={{
+          backgroundColor: colors.primary.main,
+        }}
+        activeColor={colors.primary.main}
+        inactiveColor={colors.grey.main}
+        style={{backgroundColor: 'transparent', height: 40}}
+        tabStyle={{width: 'auto'}}
+        labelStyle={{ textTransform: "capitalize" }}
+      />
+    );
   return (
     <View style={classes.root}>
-      <ImageBackground source={img.setupBG} style={classes.img}>
-        <SafeAreaView style={classes.BackButton}>
-          <BackButton goBack={() => goBack()} />
-        </SafeAreaView>
-        <ScrollView>
+      <ScrollView>
+        <ImageBackground source={img.setupBG} style={classes.img}>
+          <SafeAreaView style={classes.BackButton}>
+            <BackButton goBack={() => goBack()} />
+          </SafeAreaView>
           <Surface style={classes.bodyRoot}>
             <View style={classes.headerRoot}>
               <View style={classes.top}>
@@ -54,9 +92,39 @@ const ViewEvent = ({navigation: {navigate, goBack}}) => {
                 <Text style={classes.itemText}>Montreal, Quebec, Canada</Text>
               </View>
             </View>
+
+            <View style={classes.register}>
+              <Button
+                label="Register"
+                rootStyle={classes.button}
+                onPress={() => {}}
+              />
+              <Button
+                label="Save to registered events"
+                rootStyle={classes.button}
+                // labelStyle={{ fontSize: 8 }}
+                onPress={() => {}}
+              />
+            </View>
+
+            <TabView
+              navigationState={{index, routes}}
+              renderTabBar={renderTabBar}
+              renderScene={SceneMap({
+                aboutEvent: AboutTab,
+                speakers: AboutTab,
+                agenda: AboutTab,
+                venue: AboutTab,
+                price: AboutTab,
+                accomodation: AboutTab,
+              })}
+              onIndexChange={setIndex}
+              initialLayout={{width: layout.width}}
+              style={{flex: 1, height: 300}}
+            />
           </Surface>
-        </ScrollView>
-      </ImageBackground>
+        </ImageBackground>
+      </ScrollView>
     </View>
   );
 };
@@ -67,15 +135,18 @@ const classes = StyleSheet.create({
   root: {
     flex: 1,
   },
-  img: {},
+  img: {
+    flex: 1,
+  },
   BackButton: {
     marginLeft: 15,
   },
   bodyRoot: {
+    flex: 1,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    height: 400,
-    marginTop: Platform.OS == 'ios' ? 100 : 200,
+    // height: 900,
+    marginTop: Platform.OS == 'ios' ? 100 : 120,
     elevation: 5,
   },
   headerRoot: {
@@ -107,4 +178,18 @@ const classes = StyleSheet.create({
     marginRight: 15,
   },
   itemText: {},
+  pagerView: {
+    flex: 1,
+  },
+  register: {
+    marginHorizontal: 20,
+    // flexDirection: "row",
+    // justifyContent: "space-between",
+    // alignItems: "center"
+  },
+  button: {
+    marginVertical: 10,
+    // height: 40,
+    // width: APP_WIDTH / 2.5
+  },
 });

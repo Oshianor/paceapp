@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Welcome from '../../screens/Onboarding';
 import Login from '../../screens/Onboarding/login';
 import Register from '../../screens/Onboarding/register';
-import CompleteRegistration from '../../screens/Onboarding/completeRegistration';
+// import CompleteRegistration from '../../screens/Onboarding/completeRegistration';
 import Terms from '../../screens/Onboarding/terms';
 import Speciality from '../../screens/Onboarding/speciality';
 import VerificationCompleted from '../../screens/Onboarding/completeVerification';
@@ -32,11 +32,11 @@ const Onboarding = () => {
         options={{headerShown: false}}
         component={Register}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="CompleteRegistration"
         options={{headerShown: false}}
         component={CompleteRegistration}
-      />
+      /> */}
       <Stack.Screen
         name="Terms"
         options={{headerShown: false}}
