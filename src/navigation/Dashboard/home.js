@@ -24,9 +24,6 @@ const HomeStack = () => {
       />
       <Stack.Screen
         name="ViewEvent"
-        // options={({navigation: {goBack}}) => ({
-        //   headerLeft: () => <BackButton goBack={() => goBack()} />,
-        // })}
         options={{headerShown: false}}
         component={ViewEvent}
       />

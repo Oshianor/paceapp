@@ -28,15 +28,14 @@ const TabNavigator = () => {
           headerRight: () => (
             <TouchableOpacity
               style={classes.right}
-              onPress={() => navigate('Login')}>
+              onPress={() => navigate('ProfileStack')}>
               <Avatar.Image size={40} source={img.setupBG} />
             </TouchableOpacity>
           ),
           headerLeft: () => (
             <TouchableOpacity
               style={classes.left}
-              onPress={() => navigate('HomeStack', {route: 'Search'})}
-            >
+              onPress={() => navigate('HomeStack', {route: 'Search'})}>
               <Ionicons
                 name="search-outline"
                 size={30}
@@ -55,7 +54,7 @@ const TabNavigator = () => {
         name="InboxScreen"
         component={InboxScreen}
         options={{
-          headerShown: false,
+          title: 'Inbox',
           tabBarLabel: 'Inbox',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="bell" color={color} size={size} />
@@ -66,7 +65,7 @@ const TabNavigator = () => {
         name="EventScreen"
         component={EventScreen}
         options={{
-          headerShown: false,
+          title: 'My Events',
           tabBarLabel: 'My Events',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons
@@ -81,7 +80,7 @@ const TabNavigator = () => {
         name="MessageScreen"
         component={MessageScreen}
         options={{
-          headerShown: false,
+          title: 'Message',
           tabBarLabel: 'Message',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="forum" color={color} size={size} />

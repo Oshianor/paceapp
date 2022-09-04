@@ -4,12 +4,19 @@ import {
   LOCATION_DATA,
   COUNTRY_DATA,
   CARD_DATA,
-  PAYMENT_METHOD
+  PAYMENT_METHOD,
 } from '../types';
 
 const initialstate = {
   token: null,
-  user: null,
+  user: {
+    name: 'Test Text',
+    email: 'test@gmail.com',
+    occupation: "Dentist",
+    countryCode: '234',
+    phoneNumber: '8121784611',
+    img: null
+  },
   country: [],
   cc: null,
 };
@@ -39,7 +46,7 @@ export default (state = initialstate, action) => {
       });
     case PAYMENT_METHOD:
       return Object.assign({}, state, {
-        ...action.payload
+        ...action.payload,
       });
     default:
       return state;

@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigator from './tab';
 import HomeStack from './home';
+import ProfileStack from './profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,11 @@ const Dashboard = () => {
         name="HomeStack"
         options={{headerShown: false}}
         component={HomeStack}
+      />
+      <Stack.Screen
+        name="ProfileStack"
+        options={{headerShown: false}}
+        component={ProfileStack}
       />
     </Stack.Navigator>
   );

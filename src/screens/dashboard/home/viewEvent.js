@@ -15,16 +15,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import img from '../../../image';
 import BackButton from '../../../navigation/custom/BackButton';
 import {APP_WIDTH, colors} from '../../../theme';
-// import PagerView from 'react-native-pager-view';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import { Button } from '../../../components/Button';
 import { AboutTab } from '../../../components/Tab';
 
-const FirstRoute = () => <View style={{flex: 1, backgroundColor: '#ff4081'}} />;
-
-const SecondRoute = () => (
-  <View style={{flex: 1, backgroundColor: '#673ab7'}} />
-);
 
 
 const ViewEvent = ({navigation: {navigate, goBack}}) => {

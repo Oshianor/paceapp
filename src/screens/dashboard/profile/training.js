@@ -1,18 +1,12 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
-import {Avatar, Text} from 'react-native-paper';
+import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native"
+import { Avatar, Text } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from '../../../theme';
+import { colors } from '../../../theme';
 
-const Home = () => {
+const Training = () => {
   return (
-    <SafeAreaView style={classes.root}>
+    <View style={classes.root}>
       <FlatList
         data={[1, 2, 3, 4, 5]}
         // horizontal={true}
@@ -20,30 +14,22 @@ const Home = () => {
         renderItem={({item}) => (
           <TouchableOpacity style={classes.listRoot}>
             <View style={classes.listLeftRoot}>
-              <Avatar.Text label={'UK'} size={50} />
+              <Icon name="play-box" size={40} color={colors.primary.main} />
+
               <View style={classes.listLeftTextRoot}>
-                <Text style={classes.name}>Dr John Kevin</Text>
-                <Text style={classes.title}>Hello, How are you doing</Text>
-                <Text style={classes.address}>2 hours ago</Text>
+                <Text style={classes.name}>Training Video</Text>
+                <Text style={classes.title}>Provider Name</Text>
+                <Text style={classes.address}>June 20, 2021</Text>
               </View>
             </View>
-
-            <Icon
-              name="message-bulleted"
-              size={30}
-              color={colors.primary.main}
-              style={{
-                marginHorizontal: 20,
-              }}
-            />
           </TouchableOpacity>
         )}
       />
-    </SafeAreaView>
+    </View>
   );
-};
+}
 
-export default Home;
+export default Training
 
 const classes = StyleSheet.create({
   root: {
@@ -62,14 +48,14 @@ const classes = StyleSheet.create({
   listLeftRoot: {
     flexDirection: 'row',
     marginHorizontal: 20,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   listLeftTextRoot: {
     marginLeft: 20,
     justifyContent: 'space-evenly',
   },
   name: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '600',
   },
   title: {
@@ -78,7 +64,7 @@ const classes = StyleSheet.create({
     fontWeight: '300',
   },
   address: {
-    fontSize: 13,
+    fontSize: 12,
     // color: colors.hr.dark
   },
 });

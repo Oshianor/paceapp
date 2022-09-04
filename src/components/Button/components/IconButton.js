@@ -9,7 +9,7 @@ const IconButton = ({
   endIcon,
   onPress,
   labelStyle,
-  containerStyle,
+  rootStyle,
   caption,
   captionStyle,
   endPress,
@@ -18,7 +18,7 @@ const IconButton = ({
   return (
     <TouchableOpacity
       disabled={disabled}
-      style={[classes.container, containerStyle]}
+      style={[classes.container, rootStyle]}
       onPress={onPress}>
       <View style={classes.nameRoot}>
         <View style={classes.nameBody}>
@@ -50,8 +50,8 @@ export default IconButton;
 
 const classes = StyleSheet.create({
   container: {
-    minHeight: 55,
-    backgroundColor: colors.primary.light,
+    height: 55,
+    backgroundColor: colors.primary.main,
     width: '100%',
     // alignItems: 'center',
     flexDirection: 'column',

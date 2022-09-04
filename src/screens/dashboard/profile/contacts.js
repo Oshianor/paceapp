@@ -1,18 +1,12 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
-import {Avatar, Text} from 'react-native-paper';
+import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native"
+import { Avatar, Text } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from '../../../theme';
+import { colors } from '../../../theme';
 
-const Home = () => {
+const Contacts = () => {
   return (
-    <SafeAreaView style={classes.root}>
+    <View style={classes.root}>
       <FlatList
         data={[1, 2, 3, 4, 5]}
         // horizontal={true}
@@ -23,8 +17,8 @@ const Home = () => {
               <Avatar.Text label={'UK'} size={50} />
               <View style={classes.listLeftTextRoot}>
                 <Text style={classes.name}>Dr John Kevin</Text>
-                <Text style={classes.title}>Hello, How are you doing</Text>
-                <Text style={classes.address}>2 hours ago</Text>
+                <Text style={classes.title}>Heart Surgeon</Text>
+                <Text style={classes.address}>Sakaxhaka Clic</Text>
               </View>
             </View>
 
@@ -39,11 +33,11 @@ const Home = () => {
           </TouchableOpacity>
         )}
       />
-    </SafeAreaView>
+    </View>
   );
-};
+}
 
-export default Home;
+export default Contacts
 
 const classes = StyleSheet.create({
   root: {
