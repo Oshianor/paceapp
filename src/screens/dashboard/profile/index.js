@@ -1,5 +1,11 @@
 import React from 'react';
-import {StyleSheet, View, Dimensions, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 import {Avatar, Text} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button, IconButton} from '../../../components/Button';
@@ -80,7 +86,7 @@ const Profile = ({navigation: {navigate}}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={classes.buttonRoot}
-          onPress={() => navigate('Settings')}>
+          onPress={() => navigate('Resources')}>
           <View style={classes.buttonContain}>
             <Icon name="cog-outline" size={20} style={classes.buttonIcon} />
             <Text style={classes.buttonText}>Settings</Text>
@@ -89,7 +95,7 @@ const Profile = ({navigation: {navigate}}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={classes.buttonRoot}
-          onPress={() => navigate('Support')}>
+          onPress={() => navigate('Resources')}>
           <View style={classes.buttonContain}>
             <Icon
               name="help-circle-outline"
